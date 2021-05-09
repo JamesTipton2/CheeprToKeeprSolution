@@ -20,9 +20,48 @@ namespace CheeprToKeepr.Controllers
         }
 
         // GET: Users
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString,
+            string currentFilter, int? pageNumber)
         {
-            return View(await _context.Users.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["VehiclesSortParm"] = sortOrder == "Vehicles" ? "Vehicles_desc" : "Vehicles";
+            ViewData["CitySortParm"] = String.IsNullOrEmpty(sortOrder) ? "city_desc" : "";
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFiler"] = searchString;
+            var users = from u in _context.Users
+                      select u;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.LastName.Contains(searchString)
+                    || u.FirstName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    users = users.OrderByDescending(u => u.LastName);
+                    break;
+                case "city_desc":
+                    users = users.OrderByDescending(u => u.City);
+                    break;
+                case "Vehicles":
+                    users = users.OrderBy(u => u.Vehicles);
+                    break;
+                case "Vehicles_desc":
+                    users = users.OrderByDescending(u => u.Vehicles);
+                    break;
+                default:
+                    users = users.OrderBy(u => u.LastName);
+                    break;
+            } int pageSize = 3;
+            return View(await PaginatedList<User>.CreateAsync(users.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         // GET: Users/Details/5
@@ -98,7 +137,7 @@ namespace CheeprToKeepr.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id/*, [Bind("UserID,FirstName,LastName,AddressLine1,AddressLine2,City,PostalCode,State,Email")] User user*/)
+        public async Task<IActionResult> EditPost(int? id/*, [Bind("UserID,FirstName,LastName,AddressLine1,AddressLine2,City,PostalCode,State,Email")] User user*/)
         {
             if (id == null)
             {

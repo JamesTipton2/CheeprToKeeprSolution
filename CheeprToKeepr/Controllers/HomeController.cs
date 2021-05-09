@@ -1,4 +1,5 @@
 ﻿using CheeprToKeepr.Models;
+using CheeprToKeepr.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,12 +12,22 @@ namespace CheeprToKeepr.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly CheeprToKeeprContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        public HomeController(CheeprToKeeprContext context) => _context = context;
+
+        //public asyncTask<ActionResult> About()
+        //{
+        //    IQueryable<Vehicle> data =
+        //        from vehicle in _context.Vehicles
+        //        group vehicle by vehicle.UserID into vehicleGroup
+        //        select new VehiclesGroup()
+        //        {
+        //            Vehicle = vehicleGroup.Key,
+        //            MPG = vehicleGroup.todeciamal(MPG)
+        //        };
+        //    return View(await data.AsNoTracking().ToListAsync());
+        //}
 
         public IActionResult Index()
         {

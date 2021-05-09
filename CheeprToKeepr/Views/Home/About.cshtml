@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CheeprToKeepr.Models.ViewModels.VehiclesGroup>
+
+
+@{ 
+    ViewData["title"] = "Average Miles per Gallon of Vehicles";
+}
+
+<h2>Average Miles per Gallon of Vehicles</h2>
+
+<table>
+    <tr>
+        <th>
+            Make And Model
+        </th>
+        <th>
+            Average Miles per Gallon
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.MakeandModel
+                    </td>
+                    <td>
+                        @item.MPG
+                    </td>
+                </tr>
+            }
+</table>
