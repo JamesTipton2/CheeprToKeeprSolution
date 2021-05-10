@@ -16,5 +16,12 @@ namespace CheeprToKeepr.Models.ViewModels
         public int VehicleMileage { get; set; }
         public int GasByGallons { get; set; }
         public int TireMileage { get; set; }
+        public decimal MPG
+        {
+            get
+            {
+                return VehicleMileage / GasByGallons;
+            }
+        }
     }
 }
