@@ -36,8 +36,10 @@ namespace CheeprToKeepr.Controllers
                 searchString = currentFilter;
             }
             ViewData["CurrentFiler"] = searchString;
+
             var users = from u in _context.Users
-                      select u;
+                        select u;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 users = users.Where(u => u.LastName.Contains(searchString)

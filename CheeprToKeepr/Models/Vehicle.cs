@@ -16,24 +16,40 @@ namespace CheeprToKeepr.Models
         }
         [Key]
         public int VehicleID { get; set; }
-        public int UserID { get; set; }
+        [Required]
+        [RegularExpression(@"^[12]\d\d\d$")]
         public int Year { get; set; }
+        [Required]
+        [Display(Name = "Make")]
+        [StringLength(250)]
         public string MakeName { get; set; }
+        [Required]
+        [Display(Name = "Model")]
+        [StringLength(50)]
         public string ModelName1 { get; set; }
+        [Display(Name = "Trim Level, optional (EX: GT, SXT, EX)")]
         public string ModelName2 { get; set; }
+        [Required]
+        [Display(Name = "Miles on vehicle")]
+        [RegularExpression(@"[0-9]{0,}\.[0-9]{2}", ErrorMessage = "invalid number")]
         public int VehicleMileage { get; set; }
-        public int GasByGallons { get; set; }
+        [Display(Name ="Miles on Tires")]
         public int TireMileage { get; set; }
-        public decimal MPG
+        [Display(Name = "Avg. Miles Per Gallon")]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal MilesPerGallon { get; set; }
+        [Display(Name ="Make and Model")]
+        public string ModelFullName
         {
             get
             {
-                return VehicleMileage / GasByGallons;
+                return ModelName1 + " " + ModelName2;
             }
         }
-
+        public int UserID { get; set; }
+        public virtual User User { get; set; }
+        public ICollection<Fillup> Fillups { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
         public virtual ICollection<Service> Services { get; set; }
-        public virtual User User { get; set; }
     }
 }

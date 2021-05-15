@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CheeprToKeepr.Models.Vehicle>
+
+<h1>Vehicles</h1>
+<div class=" container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Registered Vehicles</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-primary" asp-controller="Vehicles" asp-action="Create">Register new Vehicle</a>
+        </div>
+    </div>
+    <br />
+
+    @if(Model.Count() > 0) { 
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Year
+                    </th>
+                    <th>
+                        Make
+                    </th>
+                    <th>
+                        Model
+                    </th>
+                    <th>
+                        Avg. Miles Per Gallon
+                    </th>
+                    <th>
+                        Mileage
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var vehicle in Model)
+                {
+                <tr>
+                    <td width="20%">@vehicle.Year</td>
+                    <td width="20%">@vehicle.MakeName</td>
+                    <td width="20%">@vehicle.ModelFullName</td>
+                    <td width="20%">@vehicle.MilesPerGallon</td>
+                    <td width="20%">@vehicle.VehicleMileage</td>
+                </tr>
+                } 
+            </tbody>
+        </table>
+    }else
+    {
+        <p>No Vehicles registered yet</p>
+    }
+
+</div>

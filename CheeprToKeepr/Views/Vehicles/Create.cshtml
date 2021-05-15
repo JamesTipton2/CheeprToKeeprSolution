@@ -1,0 +1,43 @@
+﻿@model CheeprToKeepr.Models.Vehicle
+
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div class="form-group row">
+            <h2 class="text-primary pl-3">Register Vehicle</h2>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="UserID"></label>
+            <input asp-for="UserID" class="form-control" id="UserID" placeholder="Select Owner">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Year"></label>
+            <input asp-for="Year" class="form-control" id="Year" placeholder="Year">
+        </div>
+        <div class="mb-3">
+            <label asp-for="MakeName"></label>
+            <input asp-for="MakeName" class="form-control" id="MakeName" placeholder="Make">
+        </div>
+        <div class="mb-3">
+            <label asp-for="ModelName1"></label>
+            <input asp-for="ModelName1" class="form-control" id="ModelName1" placeholder="Model">
+        </div>
+        <div class="mb-3">
+            <label asp-for="ModelName2"></label>
+            <input asp-for="ModelName2" class="form-control" id="ModelName2" placeholder="Optional">
+        </div>
+        <div class="mb-3">
+            <label asp-for="VehicleMileage"></label>
+            <input asp-for="VehicleMileage" class="form-control" id="VehicleMileage" placeholder="Input Vehicle Mileage">
+        </div>
+        <div class="mb-3">
+            <label asp-for="TireMileage"></label>
+            <input asp-for="TireMileage" class="form-control" id="TireMileage" placeholder="Input Tire  Mileage">
+        </div>
+        <div class="mb-3">
+            <label asp-for="MilesPerGallon"></label>
+            (Esitmated)
+            <input asp-for="MilesPerGallon" class="form-control" id="MilesPerGallon" placeholder="Input Avg. MPG">
+        </div>
+    </div>
+</form>

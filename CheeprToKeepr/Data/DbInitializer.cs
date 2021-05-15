@@ -29,7 +29,7 @@ namespace CheeprToKeepr.Data
             var vehicles = new Vehicle[]
             {
                 new Vehicle{UserID=1,Year=2003,MakeName="Dodge",ModelName1="Neon",ModelName2="SRT-4",
-                    VehicleMileage=12345,GasByGallons=12,TireMileage=5000}
+                    VehicleMileage=12345,TireMileage=5000}
             };
             foreach(Vehicle v in vehicles)
             {

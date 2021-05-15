@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheeprToKeepr.Migrations
 {
     [DbContext(typeof(CheeprToKeeprContext))]
-    [Migration("20210509235137_MaxLengthOnNames")]
-    partial class MaxLengthOnNames
+    [Migration("20210510140754_context")]
+    partial class context
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,6 +68,32 @@ namespace CheeprToKeepr.Migrations
                     b.HasKey("ExpenseCategoryID");
 
                     b.ToTable("ExpenseCategory");
+                });
+
+            modelBuilder.Entity("CheeprToKeepr.Models.Fillup", b =>
+                {
+                    b.Property<int>("FillupID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Gallons")
+                        .HasColumnType("float");
+
+                    b.Property<double>("MilesDriven")
+                        .HasColumnType("float");
+
+                    b.Property<int>("VehicleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("FillupID");
+
+                    b.HasIndex("VehicleID");
+
+                    b.ToTable("Fillup");
                 });
 
             modelBuilder.Entity("CheeprToKeepr.Models.Service", b =>
@@ -166,26 +192,32 @@ namespace CheeprToKeepr.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("GasByGallons")
-                        .HasColumnType("int");
-
                     b.Property<string>("MakeName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Make");
+
+                    b.Property<decimal>("MilesPerGallon")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ModelName1")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Model");
 
                     b.Property<string>("ModelName2")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Trim Level, optional (EX: GT, SXT, EX)");
 
                     b.Property<int>("TireMileage")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Mileage");
 
                     b.Property<int>("UserID")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Ower ID");
 
                     b.Property<int>("VehicleMileage")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Miles on vehicle");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
@@ -272,6 +304,17 @@ namespace CheeprToKeepr.Migrations
                     b.Navigation("Vehicle");
                 });
 
+            modelBuilder.Entity("CheeprToKeepr.Models.Fillup", b =>
+                {
+                    b.HasOne("CheeprToKeepr.Models.Vehicle", "Vehicle")
+                        .WithMany("Fillups")
+                        .HasForeignKey("VehicleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vehicle");
+                });
+
             modelBuilder.Entity("CheeprToKeepr.Models.Service", b =>
                 {
                     b.HasOne("CheeprToKeepr.Models.ServicesCategory", "ServicesCategory")
@@ -337,6 +380,8 @@ namespace CheeprToKeepr.Migrations
             modelBuilder.Entity("CheeprToKeepr.Models.Vehicle", b =>
                 {
                     b.Navigation("Expenses");
+
+                    b.Navigation("Fillups");
 
                     b.Navigation("Services");
                 });

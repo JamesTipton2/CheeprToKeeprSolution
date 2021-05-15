@@ -16,6 +16,13 @@ namespace CheeprToKeepr.Models.ViewModels
         public int VehicleMileage { get; set; }
         public int GasByGallons { get; set; }
         public int TireMileage { get; set; }
+        public string ModelFullName
+        {
+            get
+            {
+                return ModelName1 + " " + ModelName2;
+            }
+        }
         public decimal MPG
         {
             get
