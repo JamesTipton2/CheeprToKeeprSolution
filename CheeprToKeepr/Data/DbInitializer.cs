@@ -39,8 +39,8 @@ namespace CheeprToKeepr.Data
 
             var services = new Service[]
             {
-                new Service{VehicleID=1,ServicesCategoryID=1,ServiceName="Oil Change",ServiceDateTime=System.DateTime.Now,
-                    VehicleMilesAtService=12000,VendorID=1}
+                new Service{Name="Oil Change",ServiceDateTime=System.DateTime.Now,
+                    VehicleMilesAtService=12000}
             };
             foreach(Service s in services)
             {
@@ -62,8 +62,8 @@ namespace CheeprToKeepr.Data
 
             var expenses = new Expense[]
             {
-                new Expense{ExpenseCategoryID=1,Name="Vehicle Purchase",Details="Purchase from private owner. Paid with check from FirstBankUSA. Check No. ####",
-                ExpenseDateTime=System.DateTime.Today,VehicleID=1,Cost=5000 }
+                new Expense{Name="Vehicle Purchase",Details="Purchase from private owner. Paid with check from FirstBankUSA. Check No. ####",
+                ExpenseDateTime=System.DateTime.Today,Cost=5000 }
             };
             foreach(Expense e in expenses)
             {

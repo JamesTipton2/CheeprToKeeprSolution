@@ -10,12 +10,17 @@ namespace CheeprToKeepr.Models
     {
         [Key]
         public int ServicesID { get; set; }
-        public int VehicleID { get; set; }
-        public int ServicesCategoryID { get; set; }
-        public string ServiceName { get; set; }
+        //public int VehicleID { get; set; }
+        //public int ServicesCategoryID { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:s}", ApplyFormatInEditMode = true)]
         public System.DateTime ServiceDateTime { get; set; }
-        public Nullable<int> VehicleMilesAtService { get; set; }
-        public int VendorID { get; set; }
+        [RegularExpression(@"[0-9]{0,}", ErrorMessage = "invalid number")]
+        public int? VehicleMilesAtService { get; set; }
+        //public int VendorID { get; set; }
 
         public virtual ServicesCategory ServicesCategory { get; set; }
         public virtual Vehicle Vehicle { get; set; }

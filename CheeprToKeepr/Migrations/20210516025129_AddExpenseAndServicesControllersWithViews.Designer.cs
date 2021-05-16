@@ -4,14 +4,16 @@ using CheeprToKeepr.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheeprToKeepr.Migrations
 {
     [DbContext(typeof(CheeprToKeeprContext))]
-    partial class CheeprToKeeprContextModelSnapshot : ModelSnapshot
+    [Migration("20210516025129_AddExpenseAndServicesControllersWithViews")]
+    partial class AddExpenseAndServicesControllersWithViews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,7 @@ namespace CheeprToKeepr.Migrations
                     b.Property<string>("Details")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ExpenseCategoryID")
+                    b.Property<int>("ExpenseCategoryID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ExpenseDateTime")
@@ -43,7 +45,7 @@ namespace CheeprToKeepr.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int?>("VehicleID")
+                    b.Property<int>("VehicleID")
                         .HasColumnType("int");
 
                     b.HasKey("ExpenseID");
@@ -111,16 +113,16 @@ namespace CheeprToKeepr.Migrations
                     b.Property<DateTime>("ServiceDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ServicesCategoryID")
+                    b.Property<int>("ServicesCategoryID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VehicleID")
+                    b.Property<int>("VehicleID")
                         .HasColumnType("int");
 
                     b.Property<int?>("VehicleMilesAtService")
                         .HasColumnType("int");
 
-                    b.Property<int?>("VendorID")
+                    b.Property<int>("VendorID")
                         .HasColumnType("int");
 
                     b.HasKey("ServicesID");
@@ -298,11 +300,15 @@ namespace CheeprToKeepr.Migrations
                 {
                     b.HasOne("CheeprToKeepr.Models.ExpenseCategory", "ExpenseCategory")
                         .WithMany("Expenses")
-                        .HasForeignKey("ExpenseCategoryID");
+                        .HasForeignKey("ExpenseCategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CheeprToKeepr.Models.Vehicle", "Vehicle")
                         .WithMany("Expenses")
-                        .HasForeignKey("VehicleID");
+                        .HasForeignKey("VehicleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ExpenseCategory");
 
@@ -324,15 +330,21 @@ namespace CheeprToKeepr.Migrations
                 {
                     b.HasOne("CheeprToKeepr.Models.ServicesCategory", "ServicesCategory")
                         .WithMany("Services")
-                        .HasForeignKey("ServicesCategoryID");
+                        .HasForeignKey("ServicesCategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CheeprToKeepr.Models.Vehicle", "Vehicle")
                         .WithMany("Services")
-                        .HasForeignKey("VehicleID");
+                        .HasForeignKey("VehicleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CheeprToKeepr.Models.Vendor", "Vendor")
                         .WithMany("Services")
-                        .HasForeignKey("VendorID");
+                        .HasForeignKey("VendorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ServicesCategory");
 

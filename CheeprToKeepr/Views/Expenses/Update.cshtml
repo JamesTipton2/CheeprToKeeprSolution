@@ -1,0 +1,58 @@
+﻿@model CheeprToKeepr.Models.Expense
+@{
+    ViewData["Title"] = "Update";
+}
+
+<form method="post" asp-action="Update">
+    <input asp-for="ExpenseID" hidden />
+    <div class="border p-3">
+        @*validation summary can be "All" to create validation div at top of form*@
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row" style="color:darkblue">
+            <h2 class="pl-3">Edit Expense</h2>
+
+        </div>
+        <!--<div class="col-4">
+            <label asp-for="ExpenseCategoryID"></label>
+            <input asp-for="ExpenseCategoryID" class="form-control">-->
+            @*<input asp-for="ExpenseCategoryID" hidden="hidden" class="form-control">*@
+            <!--<span asp-validation-for="ExpenseCategoryID" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="VehicleID"></label>
+            <input asp-for="VehicleID" class="form-control">
+            <span asp-validation-for="VehicleID" class="text-danger"></span>-->
+        </div>
+        <div class="col-4">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="ExpenseDateTime"></label>
+            <input asp-for="ExpenseDateTime" class="form-control">
+            <span asp-validation-for="ExpenseDateTime" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="Details"></label>
+            <input asp-for="Details" class="form-control">
+            <span asp-validation-for="Details" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="Cost"></label>
+            <input asp-for="Cost" class="form-control">
+            <span asp-validation-for="Cost" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-8 offset-2 row">
+                <div class="col">
+                    <input type="submit" class="btn btn-info w-150" value="Update Expense" />
+                </div>
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-danger w-150">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

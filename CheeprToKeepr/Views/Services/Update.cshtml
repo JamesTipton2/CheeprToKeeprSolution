@@ -1,0 +1,58 @@
+﻿@model CheeprToKeepr.Models.Service
+@{
+    ViewData["Title"] = "Update";
+}
+
+<form method="post" asp-action="Update">
+    <input asp-for="ServicesID" hidden />
+    <div class="border p-3">
+        @*validation summary can be "All" to create validation div at top of form*@
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row" style="color:darkblue">
+            <h2 class="pl-3">Edit Service</h2>
+
+        </div>
+        <!--<div class="col-4">
+            <label asp-for="ServicesCategoryID"></label>
+            <input asp-for="ServicesCategoryID" class="form-control">-->
+            @*<input asp-for="ServicesCategoryID" hidden="hidden" class="form-control">*@
+            <!--<span asp-validation-for="ServicesCategoryID" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="VehicleID"></label>
+            <input asp-for="VehicleID" class="form-control">
+            <span asp-validation-for="VehicleID" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="VendorID"></label>
+            <input asp-for="VendorID" class="form-control">
+            <span asp-validation-for="VendorID" class="text-danger"></span>
+        </div>-->
+        <div class="col-4">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="ServiceDateTime"></label>
+            <input asp-for="ServiceDateTime" class="form-control">
+            <span asp-validation-for="ServiceDateTime" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="VehicleMilesAtService"></label>
+            <input asp-for="VehicleMilesAtService" class="form-control">
+            <span asp-validation-for="VehicleMilesAtService" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-8 offset-2 row">
+                <div class="col">
+                    <input type="submit" class="btn btn-info w-150" value="Update Service" />
+                </div>
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-danger w-150">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -31,17 +31,26 @@
                     <th>
                         Mileage
                     </th>
+                    <th>
+                        Changes
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach(var vehicle in Model)
                 {
                 <tr>
-                    <td width="20%">@vehicle.Year</td>
-                    <td width="20%">@vehicle.MakeName</td>
-                    <td width="20%">@vehicle.ModelFullName</td>
-                    <td width="20%">@vehicle.MilesPerGallon</td>
-                    <td width="20%">@vehicle.VehicleMileage</td>
+                    <td width="16%">@vehicle.Year</td>
+                    <td width="16%">@vehicle.MakeName</td>
+                    <td width="16%">@vehicle.ModelFullName</td>
+                    <td width="16%">@vehicle.MilesPerGallon</td>
+                    <td width="16%">@vehicle.VehicleMileage</td>
+                    <td width="20%">
+                        <div class="w-100 btn-group"role="group">
+                            <a class="btn btn-primary" asp-controller="Vehicles" asp-action="Update" asp-route-id="@vehicle.VehicleID" mx-1>Update</a>
+                            <a class="btn btn-danger" asp-controller="Vehicles" asp-action="Delete" asp-route-id="@vehicle.VehicleID" mx-1>Delete</a>
+                        </div>
+                    </td>
                 </tr>
                 } 
             </tbody>

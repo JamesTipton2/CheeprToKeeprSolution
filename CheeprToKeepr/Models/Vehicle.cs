@@ -31,7 +31,7 @@ namespace CheeprToKeepr.Models
         public string ModelName2 { get; set; }
         [Required]
         [Display(Name = "Miles on vehicle")]
-        [RegularExpression(@"[0-9]{0,}\.[0-9]{2}", ErrorMessage = "invalid number")]
+        [RegularExpression(@"[0-9]{0,}", ErrorMessage = "invalid number")]
         public int VehicleMileage { get; set; }
         [Display(Name ="Miles on Tires")]
         public int TireMileage { get; set; }

@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace CheeprToKeepr.Controllers
 {
-    public class VehiclesController : Controller
+    public class ExpensesController : Controller
     {
         private readonly CheeprToKeeprContext _ctx;
-        public VehiclesController(CheeprToKeeprContext ctx)
+        public ExpensesController(CheeprToKeeprContext ctx)
         {
             _ctx = ctx;
         }
         public IActionResult Index()
         {
-            IEnumerable<Vehicle> vehicleList = _ctx.Vehicles;
-            return View(vehicleList);
+            IEnumerable<Expense> expenseList = _ctx.Expenses;
+            return View(expenseList);
         }
 
         //GET-Creat
@@ -32,43 +32,44 @@ namespace CheeprToKeepr.Controllers
         //POST-Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("UserID,Year,MakeName,ModelName1,ModelName2,VehicleMileage,TireMileage,MilesPerGallon")]Vehicle vehicle)
+        public IActionResult Create(
+            [Bind("Name,Details,ExpenseDateTime,Cost")]Expense expense)
         {
             if (ModelState.IsValid)
             {
-                _ctx.Vehicles.Add(vehicle);
+                _ctx.Expenses.Add(expense);
                 _ctx.SaveChanges();
                 return RedirectToAction("Index");
 
             }
-            return View(vehicle);
+            return View(expense);
         }
 
         //GET Delete
         public IActionResult Delete(int? id)
         {
-            var vehicle = _ctx.Vehicles.Find(id);
+            var expense = _ctx.Expenses.Find(id);
             if (id != null || id == 0)
             {
-                vehicle = _ctx.Vehicles.Find(id);
+                expense = _ctx.Expenses.Find(id);
             }
             else
             {
                 return NotFound();
             }
-            return View(vehicle);
+            return View(expense);
         }
         //POST-Delete
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult DeletePost(int? vehicleID)
+        public IActionResult DeletePost(int? expenseID)
         {
-            var vehicle = _ctx.Vehicles.Find(vehicleID);
-            if (vehicle == null)
+            var expense = _ctx.Expenses.Find(expenseID);
+            if (expense == null)
             {
                 return NotFound();
             }
-            _ctx.Vehicles.Remove(vehicle);
+            _ctx.Expenses.Remove(expense);
             _ctx.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -76,31 +77,31 @@ namespace CheeprToKeepr.Controllers
         //GET Delete
         public IActionResult Update(int? id)
         {
-            var vehicle = _ctx.Vehicles.Find(id);
+            var expense = _ctx.Expenses.Find(id);
             if (id != null || id == 0)
             {
-                vehicle = _ctx.Vehicles.Find(id);
+                expense = _ctx.Expenses.Find(id);
             }
             else
             {
                 return NotFound();
             }
-            return View(vehicle);
+            return View(expense);
         }
 
         //POST Update
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Update(Vehicle vehicle)
+        public IActionResult Update(Expense expense)
         {
             if (ModelState.IsValid)
             {
-                _ctx.Vehicles.Update(vehicle);
+                _ctx.Expenses.Update(expense);
                 _ctx.SaveChanges();
                 return RedirectToAction("Index");
 
             }
-            return View(vehicle);
+            return View(expense);
         }
 
         ////POST Vehicles/Edit 
@@ -136,9 +137,9 @@ namespace CheeprToKeepr.Controllers
         //    return View(vehicleToUpdate);
         //}
 
-        private bool VehicleExists(int id)
+        private bool ExpenseExists(int id)
         {
-            return _ctx.Vehicles.Any(e => e.VehicleID == id);
+            return _ctx.Expenses.Any(e => e.ExpenseID == id);
         }
     }
 }

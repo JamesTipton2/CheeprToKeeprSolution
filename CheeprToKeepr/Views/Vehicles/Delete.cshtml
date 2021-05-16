@@ -1,0 +1,57 @@
+﻿@model CheeprToKeepr.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<form method="post" asp-action="DeletePost">
+    <input asp-for="VehicleID" hidden />
+    <div class="border p-3">
+        <div class="form-group row" style="color:darkblue">
+            <h2 class="pl-3">Delete Vehicle</h2>
+        </div>
+        @*<div class="col-4">
+            <label asp-for="UserID"></label>
+            <input asp-for="UserID" disabled class="form-control">
+        </div>*@
+        <div class="col-4">
+            <label asp-for="Year"></label>
+            <input asp-for="Year" disabled class="form-control">
+        </div>
+        <div class="col-4">
+            <label asp-for="MakeName"></label>
+            <input asp-for="MakeName" disabled class="form-control">
+        </div>
+        <div class="col-4">
+            <label asp-for="ModelName1"></label>
+            <input asp-for="ModelName1" disabled class="form-control">
+        </div>
+        <div class="col-4">
+            <label asp-for="ModelName2"></label>
+            <input asp-for="ModelName2" disabled class="form-control">
+        </div>
+        <div class="col-4">
+            <label asp-for="VehicleMileage"></label>
+            <input asp-for="VehicleMileage" disabled class="form-control">
+        </div>
+        <div class="col-4">
+            <label asp-for="TireMileage"></label>
+            <input asp-for="TireMileage" disabled class="form-control">
+        </div>
+        <div class="col-4">
+            <label asp-for="MilesPerGallon"></label>
+            (Esitmated)
+            <input asp-for="MilesPerGallon" disabled class="form-control">
+        </div>
+        <div class="form-group row">
+            <div class="col-8 offests-2 row">
+                <div class="col">
+                    <input type="submit" class="btn btn-danger w-150" value="Delete" />
+                </div>
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-succes w-150">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
