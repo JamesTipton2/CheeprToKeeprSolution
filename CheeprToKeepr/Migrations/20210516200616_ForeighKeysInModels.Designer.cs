@@ -4,14 +4,16 @@ using CheeprToKeepr.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CheeprToKeepr.Migrations
 {
     [DbContext(typeof(CheeprToKeeprContext))]
-    partial class CheeprToKeeprContextModelSnapshot : ModelSnapshot
+    [Migration("20210516200616_ForeighKeysInModels")]
+    partial class ForeighKeysInModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -274,10 +276,7 @@ namespace CheeprToKeepr.Migrations
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)");
 
-                    b.Property<int>("VendorCategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("VendorsCategoryID")
+                    b.Property<int>("VendorsCategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Website")
@@ -379,7 +378,9 @@ namespace CheeprToKeepr.Migrations
                 {
                     b.HasOne("CheeprToKeepr.Models.VendorCategory", "VendorCategory")
                         .WithMany("Vendors")
-                        .HasForeignKey("VendorsCategoryID");
+                        .HasForeignKey("VendorsCategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("VendorCategory");
                 });

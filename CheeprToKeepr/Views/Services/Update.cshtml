@@ -4,7 +4,7 @@
 }
 
 <form method="post" asp-action="Update">
-    <input asp-for="ServicesID" hidden />
+    <input asp-for="ServiceID" hidden />
     <div class="border p-3">
         @*validation summary can be "All" to create validation div at top of form*@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -12,11 +12,11 @@
             <h2 class="pl-3">Edit Service</h2>
 
         </div>
-        <!--<div class="col-4">
-            <label asp-for="ServicesCategoryID"></label>
-            <input asp-for="ServicesCategoryID" class="form-control">-->
-            @*<input asp-for="ServicesCategoryID" hidden="hidden" class="form-control">*@
-            <!--<span asp-validation-for="ServicesCategoryID" class="text-danger"></span>
+        <div class="col-4">
+            <label asp-for="ServiceCategoryID"></label>
+            <input asp-for="ServiceCategoryID" class="form-control">
+            @*<input asp-for="ServiceCategoryID" hidden="hidden" class="form-control">*@
+            <span asp-validation-for="ServiceCategoryID" class="text-danger"></span>
         </div>
         <div class="col-4">
             <label asp-for="VehicleID"></label>
@@ -27,7 +27,7 @@
             <label asp-for="VendorID"></label>
             <input asp-for="VendorID" class="form-control">
             <span asp-validation-for="VendorID" class="text-danger"></span>
-        </div>-->
+        </div>
         <div class="col-4">
             <label asp-for="Name"></label>
             <input asp-for="Name" class="form-control">

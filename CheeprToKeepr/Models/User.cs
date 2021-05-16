@@ -45,7 +45,8 @@ namespace CheeprToKeepr.Models
         [StringLength(2)]
         public string State { get; set; }
         [Required]
-        [DataType("Email")]
+        [Url()]
+        [Display(Name = "Web Site")]
         [RegularExpression(@"^(([^<>()[\]\\.,;:\s@""]+(\.[^<>()[\]\\.,;:\s@""]+)*)|("".+""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$", ErrorMessage = "invalid email")]
         public string Email { get; set; }
         public virtual ICollection<Vehicle> Vehicles { get; set; }

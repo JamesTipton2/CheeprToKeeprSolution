@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -46,7 +47,9 @@ namespace CheeprToKeepr.Models
                 return ModelName1 + " " + ModelName2;
             }
         }
+        [DisplayName("Owner")]
         public int UserID { get; set; }
+        [ForeignKey("UserID")]
         public virtual User User { get; set; }
         public ICollection<Fillup> Fillups { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }

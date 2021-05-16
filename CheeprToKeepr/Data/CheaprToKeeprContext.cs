@@ -22,7 +22,7 @@ namespace CheeprToKeepr.Data
                 .ToTable("User");
             modelBuilder.Entity<Service>()
                 .ToTable("Service");
-            modelBuilder.Entity<ServicesCategory>()
+            modelBuilder.Entity<ServiceCategory>()
                 .ToTable("ServicesCategory");
             modelBuilder.Entity<Expense>()
                 .ToTable("Expense");
@@ -39,7 +39,7 @@ namespace CheeprToKeepr.Data
         public virtual DbSet<ExpenseCategory> ExpenseCategories { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
         public virtual DbSet<Service> Services { get; set; }
-        public virtual DbSet<ServicesCategory> ServicesCategories { get; set; }
+        public virtual DbSet<ServiceCategory> ServiceCategories { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }

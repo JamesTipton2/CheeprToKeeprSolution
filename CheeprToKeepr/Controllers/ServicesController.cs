@@ -106,7 +106,7 @@ namespace CheeprToKeepr.Controllers
 
         private bool ServiceExists(int id)
         {
-            return _ctx.Services.Any(s => s.ServicesID == id);
+            return _ctx.Services.Any(s => s.ServiceID == id);
         }
     }
 }

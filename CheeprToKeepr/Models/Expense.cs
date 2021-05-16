@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,10 +22,13 @@ namespace CheeprToKeepr.Models
         [Required]
         [RegularExpression(@"[0-9]{0,}", ErrorMessage = "invalid number")]
         public int Cost { get; set; }
-        //public int VehicleID { get; set; }
-        //public int ExpenseCategoryID { get; set; }
-
+        [DisplayName("Vehicle")]
+        public int VehicleID { get; set; }
+        [DisplayName("Expense Type")]
+        public int ExpenseCategoryID { get; set; }
+        [ForeignKey("ExpenseCategoryID")]
         public virtual ExpenseCategory ExpenseCategory { get; set; }
+        [ForeignKey("VehicleID")]
         public virtual Vehicle Vehicle { get; set; }
     }
 }

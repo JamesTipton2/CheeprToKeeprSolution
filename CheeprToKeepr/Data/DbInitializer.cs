@@ -52,7 +52,7 @@ namespace CheeprToKeepr.Data
             {
                 new Vendor{Name="CheaperToKeeprAutoServiceChoice",City="Capital",State="US",PostalCode="12345",
                     PhoneNumber="8885551234",Email="vendor1@sampledomain.org",Website="NumberOneAutoServiceCo@somedomain.org",
-                    VendorsCategoryID=1}
+                    VendorCategoryID=1}
             };
             foreach(Vendor v in vendors)
             {
