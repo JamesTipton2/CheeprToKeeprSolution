@@ -7,9 +7,9 @@ namespace CheeprToKeepr.Models.ViewModels
 {
     public class ServicesViewModel
     {
-        public int ServicesID { get; set; }
+        public int ServiceID { get; set; }
         public int VehicleID { get; set; }
-        public int ServicesCategoryID { get; set; }
+        public int ServiceCategoryID { get; set; }
         public string ServiceName { get; set; }
         public DateTime ServiceDateTime { get; set; }
         public int VehicleMilesAtService { get; set; }

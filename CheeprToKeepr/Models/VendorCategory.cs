@@ -17,7 +17,7 @@ namespace CheeprToKeepr.Models
         public int VendorCategoryID { get; set; }
         [Required]
         [StringLength(100)]
-        [DisplayName("Vendery Type")]
+        [DisplayName("Vendor Type")]
         public string VendorType { get; set; }
 
         public virtual ICollection<Vendor> Vendors { get; set; }

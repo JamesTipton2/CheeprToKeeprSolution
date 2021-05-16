@@ -10,7 +10,6 @@ namespace CheeprToKeepr.Models
 {
     public class Vendor
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Vendor()
         {
             this.Services = new HashSet<Service>();
@@ -40,11 +39,11 @@ namespace CheeprToKeepr.Models
         public string Email { get; set; }
         [RegularExpression(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please provide a valid email address")]
         public string Website { get; set; }
-        [DisplayName("Vendory Type")]
+        [DisplayName("Vendor Type")]
         public int VendorCategoryID { get; set; }
 
         public virtual ICollection<Service> Services { get; set; }
-        [ForeignKey("VendorsCategoryID")]
+        [ForeignKey("VendorCategoryID")]
         public virtual VendorCategory VendorCategory { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace CheeprToKeepr.Models
 {
     public class Fillup
     {
+        [Key]
         public int FillupID { get; set; }
         public double Gallons { get; set; }
         public double MilesDriven { get; set; }

@@ -23,7 +23,7 @@ namespace CheeprToKeepr.Models
         [DisplayName("Service Type")]
         public int ServiceCategoryID { get; set; }
         [ForeignKey("ServiceCategoryID")]
-        public virtual ServiceCategory ServicesCategory { get; set; }
+        public virtual ServiceCategory ServiceCategory { get; set; }
         [DisplayName("Vehicle")]
         public int VehicleID { get; set; }
         [ForeignKey("VehicleID")]

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheeprToKeepr.Migrations
 {
     [DbContext(typeof(CheeprToKeeprContext))]
-    [Migration("20210516201005_FKattempt")]
-    partial class FKattempt
+    [Migration("20210516203307_updateTables")]
+    partial class updateTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
