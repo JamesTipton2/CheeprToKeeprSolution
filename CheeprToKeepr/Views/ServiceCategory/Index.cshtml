@@ -1,12 +1,12 @@
-﻿@model IEnumerable<CheeprToKeepr.Models.ExpenseCategory>
+﻿@model IEnumerable<CheeprToKeepr.Models.ServiceCategory>
 
 <div class=" container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Expense Categories</h2>
+            <h2 class="text-primary">Service Categories</h2>
         </div>
         <div class="col-6 text-right">
-            <a class="btn btn-primary" asp-controller="ExpenseCategory" asp-action="Create">Add new Category</a>
+            <a class="btn btn-primary" asp-controller="ServiceCategory" asp-action="Create">Add new Category</a>
         </div>
     </div>
     <br />
@@ -18,18 +18,20 @@
                     <th>
                         Cateogry Name
                     </th>
-                    <th>Changes</th>
+                    <th>
+                        Changes
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach(var item in Model)
                 {
                 <tr>
-                    <td width="50%">@item.ExpenseType</td>
+                    <td width="50%">@item.ServiceType</td>
                     <td width="50%">
                         <div class="w-100 btn-group"role="group">
-                            <a class="btn btn-primary" asp-controller="ExpenseCategory" asp-action="Update" asp-route-id="@item.ExpenseCategoryID" mx-1>Update</a>
-                            <a class="btn btn-danger" asp-controller="ExpenseCategory" asp-action="Delete" asp-route-id="@item.ExpenseCategoryID" mx-1>Delete</a>
+                            <a class="btn btn-primary" asp-controller="ServiceCategory" asp-action="Update" asp-route-id="@item.ServiceCategoryID" mx-1>Update</a>
+                            <a class="btn btn-danger" asp-controller="ServiceCategory" asp-action="Delete" asp-route-id="@item.ServiceCategoryID" mx-1>Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -44,5 +46,6 @@
 </div>
 <footer>
     <div class="col-6 text-right">
-        <a class="btn btn-primary" asp-controller="Expenses" asp-action="Index">Expenses List</a>    </div>
+        <a class="btn btn-primary" asp-controller="Service" asp-action="Index">Services List</a>    
+    </div>
 </footer>

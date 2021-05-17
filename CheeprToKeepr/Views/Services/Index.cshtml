@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<CheeprToKeepr.Models.Service>
 
-<h1>Services</h1>
 <div class=" container p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -17,15 +16,6 @@
             <thead>
                 <tr>
                     <th>
-                        Services Category ID
-                    </th>
-                    <th>
-                        Vehicle ID
-                    </th>
-                    <th>
-                        Vendor ID
-                    </th>
-                    <th>
                         Name
                     </th>
                     <th>
@@ -34,17 +24,24 @@
                     <th>
                         Miles at Service
                     </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Changes
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 @foreach(var service in Model)
                 {
                 <tr>
-                    <td width="25%">@service.Name</td>
-                    <td width="25%">@service.ServiceDateTime</td>
-                    <td width="25%">@service.VehicleMilesAtService</td>
-                    <td width="25%">
-                        <div class="w-100 btn-group"role="group">
+                    <td width="20%">@service.Name</td>
+                    <td width="20%">@service.ServiceDateTime</td>
+                    <td width="20%">@service.VehicleMilesAtService</td>
+                    <td width="20%">@service.ServiceCategory.ServiceType</td>
+                    <td width="20%">
+                        <div class="w-100 btn-group" role="group">
                             <a class="btn btn-primary" asp-controller="Services" asp-action="Update" asp-route-id="@service.ServiceID" mx-1>Update</a>
                             <a class="btn btn-danger" asp-controller="Services" asp-action="Delete" asp-route-id="@service.ServiceID" mx-1>Delete</a>
                         </div>
@@ -59,3 +56,9 @@
     }
 
 </div>
+<footer>
+    <div class="col-6 text-right">
+        <a class="btn btn-success" asp-area="" asp-controller="ServiceCategory" asp-action="Index">Service Category List</a>
+
+    </div>
+</footer>

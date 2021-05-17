@@ -1,12 +1,12 @@
-﻿@model IEnumerable<CheeprToKeepr.Models.ExpenseCategory>
+﻿@model IEnumerable<CheeprToKeepr.Models.VendorCategory>
 
 <div class=" container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h2 class="text-primary">Expense Categories</h2>
+            <h2 class="text-primary">Vendor Categories</h2>
         </div>
         <div class="col-6 text-right">
-            <a class="btn btn-primary" asp-controller="ExpenseCategory" asp-action="Create">Add new Category</a>
+            <a class="btn btn-primary" asp-controller="VendorCategory" asp-action="Create">Add new Category</a>
         </div>
     </div>
     <br />
@@ -25,11 +25,11 @@
                 @foreach(var item in Model)
                 {
                 <tr>
-                    <td width="50%">@item.ExpenseType</td>
+                    <td width="50%">@item.VendorType</td>
                     <td width="50%">
                         <div class="w-100 btn-group"role="group">
-                            <a class="btn btn-primary" asp-controller="ExpenseCategory" asp-action="Update" asp-route-id="@item.ExpenseCategoryID" mx-1>Update</a>
-                            <a class="btn btn-danger" asp-controller="ExpenseCategory" asp-action="Delete" asp-route-id="@item.ExpenseCategoryID" mx-1>Delete</a>
+                            <a class="btn btn-primary" asp-controller="VendorCategory" asp-action="Update" asp-route-id="@item.VendorCategoryID" mx-1>Update</a>
+                            <a class="btn btn-danger" asp-controller="VendorCategory" asp-action="Delete" asp-route-id="@item.VendorCategoryID" mx-1>Delete</a>
                         </div>
                     </td>
                 </tr>
@@ -38,11 +38,11 @@
         </table>
     }else
     {
-        <p>No Expenses exist yet</p>
+        <p>No Vendors exist yet</p>
     }
 
 </div>
 <footer>
     <div class="col-6 text-right">
-        <a class="btn btn-primary" asp-controller="Expenses" asp-action="Index">Expenses List</a>    </div>
+        <a class="btn btn-primary" asp-controller="Vendor" asp-action="Index">Vendors List</a></div>
 </footer>

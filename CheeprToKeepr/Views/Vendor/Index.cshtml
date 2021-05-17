@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CheeprToKeepr.Models.Vendor>
+
+<div class=" container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Vendors</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-primary" asp-controller="Vendor" asp-action="Create">Add new Vendor</a>
+        </div>
+    </div>
+    <br />
+
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Vendor
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        PostalCode
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Changes
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vendor in Model)
+                {
+                    <tr>
+                        <td width="16%">@vendor.Name</td>
+                        <td width="16%">@vendor.City</td>
+                        <td width="16%">@vendor.State</td>
+                        <td width="16%">@vendor.PostalCode</td>
+                        <td width="16%">@vendor.VendorCategory.VendorType</td>
+                        <td width="20%">
+                            <div class="w-100 btn-group" role="group">
+                                <a class="btn btn-primary" asp-controller="Vendor" asp-action="Update" asp-route-id="@vendor.VendorID" mx-1>Update</a>
+                                <a class="btn btn-danger" asp-controller="Vendor" asp-action="Delete" asp-route-id="@vendor.VendorID" mx-1>Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Services exist yet</p>
+    }
+
+</div>
+<footer>
+    <div class="col-6 text-right">
+        <a class="btn btn-success" asp-area="" asp-controller="VendorCategory" asp-action="Index">Vendor Category List</a>
+
+    </div>
+</footer>

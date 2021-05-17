@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<CheeprToKeepr.Models.Expense>
 
-<h1>Expenses</h1>
 <div class=" container p-3">
     <div class="row pt-4">
         <div class="col-6">
@@ -42,7 +41,7 @@
                         <td width="20%">@expense.ExpenseDateTime</td>
                         <td width="20%">@expense.Cost</td>
                         <td width="20%">@expense.ExpenseCategory.ExpenseType"</td>
-                        <td width="20">
+                        <td width="20%">
                             <div class="w-100 btn-group" role="group">
                                 <a class="btn btn-primary" asp-controller="Expenses" asp-action="Update" asp-route-id="@expense.ExpenseID" mx-1>Update</a>
                                 <a class="btn btn-danger" asp-controller="Expenses" asp-action="Delete" asp-route-id="@expense.ExpenseID" mx-1>Delete</a>
@@ -62,7 +61,7 @@
 </div>
 <footer>
     <div class="col-6 text-right">
-        <a class="btn btn-success" asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category</a>
+        <a class="btn btn-success" asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a>
 
     </div>
 </footer>

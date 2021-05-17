@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace CheeprToKeepr.Models.ViewModels
 {
-    public class VendorViewModel
+    public class ServiceViewModel
     {
-        public Vendor Vendor { get; set; }
+        public Service Service { get; set; }
         public IEnumerable<SelectListItem> CategoryList { get; set; }
+        public IEnumerable<SelectListItem> VehicleList { get; set; }
+        public IEnumerable<SelectListItem> VendorList { get; set; }
     }
 }

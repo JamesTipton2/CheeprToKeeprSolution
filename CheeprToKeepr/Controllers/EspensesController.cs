@@ -35,7 +35,6 @@ namespace CheeprToKeepr.Controllers
         //GET-Creat
         public IActionResult Create()
         {
-
             ExpensesViewModel expenseVM = new ExpensesViewModel()
             {
                 Expense = new Expense(),
@@ -153,39 +152,6 @@ namespace CheeprToKeepr.Controllers
             }
             return View(expense);
         }
-
-        ////POST Vehicles/Edit 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> UpdatePost(int? vehicleID)
-        //{
-        //    //var vehicle = _ctx.Vehicles.Find(vehicleID);
-        //    if (vehicleID == null || vehicleID == 0)
-        //    {
-        //        return NotFound();
-        //        //vehicle = _ctx.Vehicles.Find(vehicleID);
-        //    }
-        //    var vehicleToUpdate = await _ctx.Vehicles.FirstOrDefaultAsync(v => v.VehicleID == vehicleID);
-        //    if(await TryUpdateModelAsync<Vehicle>(
-        //        vehicleToUpdate,
-        //        "",
-        //        v => v.UserID, v => v.Year, v => v.MakeName, v => v.ModelName1,
-        //        v => v.ModelName2, v => v.VehicleMileage, v => v.TireMileage, v => v.MilesPerGallon))
-        //    {
-        //        try
-        //        {
-        //            await _ctx.SaveChangesAsync();
-        //            return RedirectToAction(nameof(Index));
-        //        }
-        //        catch(DbUpdateException /* ex */)
-        //        {
-        //            ModelState.AddModelError("","Unable to save changes. " +
-        //                "Try again, and if the problem persists, " +
-        //                "see your system administrator.");
-        //        }
-        //    }
-        //    return View(vehicleToUpdate);
-        //}
 
         private bool ExpenseExists(int id)
         {

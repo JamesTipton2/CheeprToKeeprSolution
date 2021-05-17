@@ -1,6 +1,8 @@
 ﻿using CheeprToKeepr.Data;
 using CheeprToKeepr.Models;
+using CheeprToKeepr.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,30 +21,55 @@ namespace CheeprToKeepr.Controllers
         public IActionResult Index()
         {
             IEnumerable<Service> servicesList = _ctx.Services;
+
+            foreach (var obj in servicesList)
+            {
+                obj.ServiceCategory = _ctx.ServiceCategories
+                    .FirstOrDefault(s =>
+                    s.ServiceCategoryID == obj.ServiceCategoryID);
+            }
+
             return View(servicesList);
         }
 
         //GET-Create
         public IActionResult Create()
         {
-
-            return View();
+            ServiceViewModel serviceVM = new ServiceViewModel()
+            {
+                Service = new Service(),
+                CategoryList = _ctx.ServiceCategories.Select(c => new SelectListItem
+                {
+                    Text = c.ServiceType,
+                    Value = c.ServiceCategoryID.ToString()
+                }),
+                VehicleList = _ctx.Vehicles.Select(v => new SelectListItem
+                {
+                    Text = v.ModelFullName,
+                    Value = v.VehicleID.ToString()
+                }),
+                VendorList = _ctx.Vendors.Select(v => new SelectListItem
+                {
+                    Text = v.Name,
+                    Value = v.VendorID.ToString()
+                })
+            };
+            return View(serviceVM);
         }
 
         //POST-Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Create(
-            [Bind("Name,ServiceDateTime,VehicleMilesAtService")] Service service)
+        public IActionResult Create(ServiceViewModel item)
         {
             if (ModelState.IsValid)
             {
-                _ctx.Services.Add(service);
+                _ctx.Services.Add(item.Service);
                 _ctx.SaveChanges();
                 return RedirectToAction("Index");
 
             }
-            return View(service);
+            return View(item);
         }
 
         //GET Delete
@@ -77,16 +104,35 @@ namespace CheeprToKeepr.Controllers
         //GET Delete
         public IActionResult Update(int? id)
         {
-            var service = _ctx.Services.Find(id);
+            ServiceViewModel serviceVM = new ServiceViewModel()
+            {
+                Service = new Service(),
+                CategoryList = _ctx.ServiceCategories.Select(c => new SelectListItem
+                {
+                    Text = c.ServiceType,
+                    Value = c.ServiceCategoryID.ToString()
+                }),
+                VehicleList = _ctx.Vehicles.Select(v => new SelectListItem
+                {
+                    Text = v.ModelFullName,
+                    Value = v.VehicleID.ToString()
+                }),
+                VendorList = _ctx.Vendors.Select(v => new SelectListItem
+                {
+                    Text = v.Name,
+                    Value = v.VendorID.ToString()
+                })
+            };
+            serviceVM.Service = _ctx.Services.Find(id);
             if (id != null || id == 0)
             {
-                service = _ctx.Services.Find(id);
+                serviceVM.Service = _ctx.Services.Find(id);
             }
             else
             {
                 return NotFound();
             }
-            return View(service);
+            return View(serviceVM);
         }
 
         //POST Update
