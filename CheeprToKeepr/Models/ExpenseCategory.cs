@@ -17,7 +17,7 @@ namespace CheeprToKeepr.Models
         public int ExpenseCategoryID { get; set; }
         [Required]
         [StringLength(100)]
-        [DisplayName("Expense Type")]
+        [DisplayName("Category")]
         public string ExpenseType { get; set; }
 
         public virtual ICollection<Expense> Expenses { get; set; }

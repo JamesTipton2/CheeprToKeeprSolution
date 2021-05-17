@@ -1,6 +1,8 @@
 ﻿using CheeprToKeepr.Data;
 using CheeprToKeepr.Models;
+using CheeprToKeepr.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,23 +27,33 @@ namespace CheeprToKeepr.Controllers
         //GET-Creat
         public IActionResult Create()
         {
+            VehicleViewModel vehicleVM = new VehicleViewModel()
+            {
+                Vehicle = new Vehicle(),
+                UserList = _ctx.Users.Select(u => new SelectListItem
+                {
+                    Text = u.FirstName + " " + u.LastName,
+                    Value = u.UserID.ToString()
+                })
+            };
 
-            return View();
+
+            return View(vehicleVM);
         }
 
         //POST-Create
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("UserID,Year,MakeName,ModelName1,ModelName2,VehicleMileage,TireMileage,MilesPerGallon")]Vehicle vehicle)
+        public IActionResult Create(VehicleViewModel item)
         {
             if (ModelState.IsValid)
             {
-                _ctx.Vehicles.Add(vehicle);
+                _ctx.Vehicles.Add(item.Vehicle);
                 _ctx.SaveChanges();
                 return RedirectToAction("Index");
 
             }
-            return View(vehicle);
+            return View(item);
         }
 
         //GET Delete

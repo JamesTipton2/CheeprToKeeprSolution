@@ -35,37 +35,37 @@ namespace CheeprToKeepr.Data
             {
                 context.Vehicles.Add(v);
             }
-            context.SaveChanges();
+            //context.SaveChanges();
 
-            var services = new Service[]
-            {
-                new Service{Name="Oil Change",ServiceDateTime=System.DateTime.Now,
-                    VehicleMilesAtService=12000}
-            };
-            foreach(Service s in services)
-            {
-                context.Services.Add(s);
-            }
-            context.SaveChanges();
+            //var services = new Service[]
+            //{
+            //    new Service{Name="Oil Change",ServiceDateTime=System.DateTime.Now,
+            //        VehicleMilesAtService=12000}
+            //};
+            //foreach(Service s in services)
+            //{
+            //    context.Services.Add(s);
+            //}
+            //context.SaveChanges();
 
-            var vendors = new Vendor[]
-            {
-                new Vendor{Name="CheaperToKeeprAutoServiceChoice",City="Capital",State="US",PostalCode="12345",
-                    PhoneNumber="8885551234",Email="vendor1@sampledomain.org",Website="NumberOneAutoServiceCo@somedomain.org",
-                    VendorCategoryID=1}
-            };
-            foreach(Vendor v in vendors)
-            {
-                context.Vendors.Add(v);
-            }
-            context.SaveChanges();
+            //var vendors = new Vendor[]
+            //{
+            //    new Vendor{Name="CheaperToKeeprAutoServiceChoice",City="Capital",State="US",PostalCode="12345",
+            //        PhoneNumber="8885551234",Email="vendor1@sampledomain.org",Website="NumberOneAutoServiceCo@somedomain.org",
+            //        VendorCategoryID=1}
+            //};
+            //foreach(Vendor v in vendors)
+            //{
+            //    context.Vendors.Add(v);
+            //}
+            //context.SaveChanges();
 
             var expenses = new Expense[]
             {
                 new Expense{Name="Vehicle Purchase",Details="Purchase from private owner. Paid with check from FirstBankUSA. Check No. ####",
-                ExpenseDateTime=System.DateTime.Today,Cost=5000 }
+                ExpenseDateTime=System.DateTime.Today,Cost=5000,ExpenseCategoryID=1,VehicleID=1 }
             };
-            foreach(Expense e in expenses)
+            foreach (Expense e in expenses)
             {
                 context.Expenses.Add(e);
             }

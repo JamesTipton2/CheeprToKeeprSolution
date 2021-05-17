@@ -24,7 +24,7 @@ namespace CheeprToKeepr.Models
         public int Cost { get; set; }
         [DisplayName("Vehicle")]
         public int VehicleID { get; set; }
-        [DisplayName("Expense Type")]
+        [DisplayName("Category")]
         public int ExpenseCategoryID { get; set; }
         [ForeignKey("ExpenseCategoryID")]
         public virtual ExpenseCategory ExpenseCategory { get; set; }

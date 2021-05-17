@@ -1,47 +1,45 @@
-﻿@model CheeprToKeepr.Models.Expense
+﻿@model CheeprToKeepr.Models.ViewModels.ExpensesViewModel
 @{
     ViewData["Title"] = "Update";
 }
 
 <form method="post" asp-action="Update">
-    <input asp-for="ExpenseID" hidden />
+    <input asp-for="Expense.ExpenseID" hidden />
     <div class="border p-3">
         @*validation summary can be "All" to create validation div at top of form*@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group row" style="color:darkblue">
             <h2 class="pl-3">Edit Expense</h2>
-
-        </div>
-        <!--<div class="col-4">
-            <label asp-for="ExpenseCategoryID"></label>
-            <input asp-for="ExpenseCategoryID" class="form-control">-->
-            @*<input asp-for="ExpenseCategoryID" hidden="hidden" class="form-control">*@
-            <!--<span asp-validation-for="ExpenseCategoryID" class="text-danger"></span>
         </div>
         <div class="col-4">
-            <label asp-for="VehicleID"></label>
-            <input asp-for="VehicleID" class="form-control">
-            <span asp-validation-for="VehicleID" class="text-danger"></span>-->
+            <label asp-for="Expense.Name"></label>
+            <input asp-for="Expense.Name" class="form-control">
+            <span asp-validation-for="Expense.Name" class="text-danger"></span>
         </div>
         <div class="col-4">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control">
-            <span asp-validation-for="Name" class="text-danger"></span>
+            <label asp-for="Expense.ExpenseDateTime"></label>
+            <input asp-for="Expense.ExpenseDateTime" class="form-control">
+            <span asp-validation-for="Expense.ExpenseDateTime" class="text-danger"></span>
         </div>
         <div class="col-4">
-            <label asp-for="ExpenseDateTime"></label>
-            <input asp-for="ExpenseDateTime" class="form-control">
-            <span asp-validation-for="ExpenseDateTime" class="text-danger"></span>
+            <label asp-for="Expense.Details"></label>
+            <input asp-for="Expense.Details" class="form-control">
+            <span asp-validation-for="Expense.Details" class="text-danger"></span>
         </div>
         <div class="col-4">
-            <label asp-for="Details"></label>
-            <input asp-for="Details" class="form-control">
-            <span asp-validation-for="Details" class="text-danger"></span>
+            <label asp-for="Expense.Cost"></label>
+            <input asp-for="Expense.Cost" class="form-control">
+            <span asp-validation-for="Expense.Cost" class="text-danger"></span>
         </div>
         <div class="col-4">
-            <label asp-for="Cost"></label>
-            <input asp-for="Cost" class="form-control">
-            <span asp-validation-for="Cost" class="text-danger"></span>
+            <label asp-for="Expense.ExpenseCategoryID"></label>
+            <select asp-for="Expense.ExpenseCategoryID" asp-items="@Model.CategoryList" class="form-control"></select>
+            <span asp-validation-for="Expense.ExpenseCategoryID" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <label asp-for="Expense.VehicleID"></label>
+            <select asp-for="Expense.VehicleID" asp-items="@Model.VehicleList " class="form-control"></select>
+            <span asp-validation-for="Expense.VehicleID" class="text-danger"></span>
         </div>
         <div class="form-group row">
             <div class="col-8 offset-2 row">
