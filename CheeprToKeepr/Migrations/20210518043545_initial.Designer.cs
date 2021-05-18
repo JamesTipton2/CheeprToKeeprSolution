@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CheeprToKeepr.Migrations
 {
     [DbContext(typeof(CheeprToKeeprContext))]
-    [Migration("20210516200616_ForeighKeysInModels")]
-    partial class ForeighKeysInModels
+    [Migration("20210518043545_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,7 +152,7 @@ namespace CheeprToKeepr.Migrations
 
                     b.HasKey("ServiceCategoryID");
 
-                    b.ToTable("ServicesCategory");
+                    b.ToTable("ServiceCategory");
                 });
 
             modelBuilder.Entity("CheeprToKeepr.Models.User", b =>
@@ -276,7 +276,7 @@ namespace CheeprToKeepr.Migrations
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)");
 
-                    b.Property<int>("VendorsCategoryID")
+                    b.Property<int>("VendorCategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Website")
@@ -284,9 +284,9 @@ namespace CheeprToKeepr.Migrations
 
                     b.HasKey("VendorID");
 
-                    b.HasIndex("VendorsCategoryID");
+                    b.HasIndex("VendorCategoryID");
 
-                    b.ToTable("Vendors");
+                    b.ToTable("Vendor");
                 });
 
             modelBuilder.Entity("CheeprToKeepr.Models.VendorCategory", b =>
@@ -303,7 +303,7 @@ namespace CheeprToKeepr.Migrations
 
                     b.HasKey("VendorCategoryID");
 
-                    b.ToTable("VendorsCategory");
+                    b.ToTable("VendorCategory");
                 });
 
             modelBuilder.Entity("CheeprToKeepr.Models.Expense", b =>
@@ -338,7 +338,7 @@ namespace CheeprToKeepr.Migrations
 
             modelBuilder.Entity("CheeprToKeepr.Models.Service", b =>
                 {
-                    b.HasOne("CheeprToKeepr.Models.ServiceCategory", "ServicesCategory")
+                    b.HasOne("CheeprToKeepr.Models.ServiceCategory", "ServiceCategory")
                         .WithMany("Services")
                         .HasForeignKey("ServiceCategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -356,7 +356,7 @@ namespace CheeprToKeepr.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ServicesCategory");
+                    b.Navigation("ServiceCategory");
 
                     b.Navigation("Vehicle");
 
@@ -378,7 +378,7 @@ namespace CheeprToKeepr.Migrations
                 {
                     b.HasOne("CheeprToKeepr.Models.VendorCategory", "VendorCategory")
                         .WithMany("Vendors")
-                        .HasForeignKey("VendorsCategoryID")
+                        .HasForeignKey("VendorCategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

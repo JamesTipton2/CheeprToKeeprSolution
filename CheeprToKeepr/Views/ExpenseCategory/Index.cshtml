@@ -43,6 +43,25 @@
 
 </div>
 <footer>
-    <div class="col-6 text-right">
-        <a class="btn btn-primary" asp-controller="Expenses" asp-action="Index">Expenses List</a>    </div>
+    <div class="row text-right">
+        <div class="col-2">
+            <a class="btn btn-primary" asp-controller="Expenses" asp-action="Index">Expenses List</a>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Vehicles" asp-action="Index">Vehicles</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Index">MenuPage</a>
+
+        </div>
+    </div>
 </footer>

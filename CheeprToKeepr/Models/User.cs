@@ -28,7 +28,6 @@ namespace CheeprToKeepr.Models
         public string LastName { get; set; }
         [Display(Name = "Address Line 1")]
         [Required]
-        [RegularExpression(@"[-_,A-Za-z0-9]{1,250}$", ErrorMessage="Please Enter a valid Address")]
         public string AddressLine1 { get; set; }
         [Display(Name = "Line 2, optional(Apt, Room, Suite, etc.)")]
         public string AddressLine2 { get; set; }

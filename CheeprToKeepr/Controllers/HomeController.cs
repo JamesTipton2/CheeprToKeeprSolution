@@ -17,19 +17,6 @@ namespace CheeprToKeepr.Controllers
 
         public HomeController(CheeprToKeeprContext context) => _context = context;
 
-        //public async Task<ActionResult> About()
-        //{
-        //    //IQueryable<VehicleGroup> data =
-        //    //    from vehicle in _context.Vehicles
-        //    //    group vehicle by vehicle.UserID into vehicleGroup
-        //    //    select new VehiclesGroup()
-        //    //    {
-        //    //        MakeandModel = vehicleGroup.Key,
-        //    //        MPG = vehicleGroup
-        //    //    };
-        //    return View();
-        //}
-
         public IActionResult Index()
         {
             return View();

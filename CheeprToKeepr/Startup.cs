@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CheeprToKeepr.Models;
 using Microsoft.AspNetCore.Identity;
+using CheeprToKeepr.Infrastructure;
 
 namespace CheeprToKeepr
 {
@@ -35,7 +36,8 @@ namespace CheeprToKeepr
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
 
-            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<ICheeprToKeeprService, CheeprToKeeprService>();
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

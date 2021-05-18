@@ -64,6 +64,31 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+<footer>
+    <div class="row">
+        <div class="col-6 text-right">
+            <a class="btn btn-success" asp-area="" asp-controller="Vehicles" asp-action="Index">Vehicles</a>
+
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-success" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
+
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-success" asp-area="" asp-controller="Expenses" asp-action="Index">Expenses</a>
+
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-success" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
+
+        </div>
+        <div class="col-6 text-right">
+            <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Index">MenuPage</a>
+            Menu Page
+        </div>
+    </div>
+</footer>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

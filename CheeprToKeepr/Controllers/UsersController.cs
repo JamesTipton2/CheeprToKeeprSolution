@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CheeprToKeepr.Data;
 using CheeprToKeepr.Models;
+using CheeprToKeepr.Infrastructure;
 
 namespace CheeprToKeepr.Controllers
 {
     public class UsersController : Controller
     {
         private readonly CheeprToKeeprContext _context;
+        private readonly ICheeprToKeeprService _service;
 
-        public UsersController(CheeprToKeeprContext context)
+        public UsersController(CheeprToKeeprContext context, ICheeprToKeeprService service)
         {
+            _service = service;
             _context = context;
         }
 
@@ -23,6 +26,7 @@ namespace CheeprToKeepr.Controllers
         public async Task<IActionResult> Index(string sortOrder, string searchString,
             string currentFilter, int? pageNumber)
         {
+            _service.GetOwnerList();
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["VehiclesSortParm"] = sortOrder == "Vehicles" ? "Vehicles_desc" : "Vehicles";

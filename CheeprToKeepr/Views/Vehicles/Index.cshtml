@@ -1,62 +1,96 @@
 ﻿@model IEnumerable<CheeprToKeepr.Models.Vehicle>
 
 <div class=" container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">Registered Vehicles</h2>
-        </div>
-        <div class="col-6 text-right">
-            <a class="btn btn-primary" asp-controller="Vehicles" asp-action="Create">Register new Vehicle</a>
-        </div>
-    </div>
-    <br />
-
-    @if(Model.Count() > 0) { 
-        <table class="table table-bordered table-striped" style="width:100%">
-            <thead>
-                <tr>
-                    <th>
-                        Year
-                    </th>
-                    <th>
-                        Make
-                    </th>
-                    <th>
-                        Model
-                    </th>
-                    <th>
-                        Avg. Miles Per Gallon
-                    </th>
-                    <th>
-                        Mileage
-                    </th>
-                    <th>
-                        Changes
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(var vehicle in Model)
-                {
-                <tr>
-                    <td width="16%">@vehicle.Year</td>
-                    <td width="16%">@vehicle.MakeName</td>
-                    <td width="16%">@vehicle.ModelFullName</td>
-                    <td width="16%">@vehicle.MilesPerGallon</td>
-                    <td width="16%">@vehicle.VehicleMileage</td>
-                    <td width="20%">
-                        <div class="w-100 btn-group"role="group">
-                            <a class="btn btn-primary" asp-controller="Vehicles" asp-action="Update" asp-route-id="@vehicle.VehicleID" mx-1>Update</a>
-                            <a class="btn btn-danger" asp-controller="Vehicles" asp-action="Delete" asp-route-id="@vehicle.VehicleID" mx-1>Delete</a>
-                        </div>
-                    </td>
-                </tr>
-                } 
-            </tbody>
-        </table>
-    }else
+    @if (User.IsInRole(CheeprToKeepr.Utility.Helper.Owner))
     {
-        <p>No Vehicles registered yet</p>
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">Registered Vehicles</h2>
+            </div>
+            <div class="col-6 text-right">
+                <a class="btn btn-primary" asp-controller="Vehicles" asp-action="Create">Register new Vehicle</a>
+            </div>
+        </div>
+        <br />
+
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>
+                            Year
+                        </th>
+                        <th>
+                            Make
+                        </th>
+                        <th>
+                            Model
+                        </th>
+                        <th>
+                            Avg. Miles Per Gallon
+                        </th>
+                        <th>
+                            Mileage
+                        </th>
+                        <th>
+                            Changes
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var vehicle in Model)
+                    {
+                        <tr>
+                            <td width="16%">@vehicle.Year</td>
+                            <td width="16%">@vehicle.MakeName</td>
+                            <td width="16%">@vehicle.ModelFullName</td>
+                            <td width="16%">@vehicle.MilesPerGallon</td>
+                            <td width="16%">@vehicle.VehicleMileage</td>
+                            <td width="20%">
+                                <div class="w-100 btn-group" role="group">
+                                    <a class="btn btn-primary" asp-controller="Vehicles" asp-action="Update" asp-route-id="@vehicle.VehicleID" mx-1>Update</a>
+                                    <a class="btn btn-danger" asp-controller="Vehicles" asp-action="Delete" asp-route-id="@vehicle.VehicleID" mx-1>Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No Vehicles registered yet</p>
+        }
+    }
+    else
+    {
+        <p>Please Sign in as Owner to acces this feature.</p>
     }
 
 </div>
+
+<footer>
+    <div class="row text-center">
+        @*<div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a>
+
+        </div>*@
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Expenses" asp-action="Index">Expenses</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Index">MenuPage</a>
+
+        </div>
+    </div>
+</footer>

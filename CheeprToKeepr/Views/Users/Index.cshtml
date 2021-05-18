@@ -5,116 +5,125 @@
 }
 
 <h1 style="color:blue">Vehicle Owners List</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Register new Owner</a>
-</p>
-<form asp-action="Index" method="get">
-    <div class="form-actions no-color">
+<div class="container">
+    @if (User.IsInRole(CheeprToKeepr.Utility.Helper.Admin))
+    {
         <p>
-            Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
-            <a asp-action="Index" class="btn btn-primary">Back to Full List</a>
+            <a asp-action="Create" class="btn btn-primary">Register new Owner</a>
         </p>
-    </div>
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                FirstName
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">LastName</a>
-            </th>
-            <th>
-                AddressLine1
-            </th>
-            <th>
-                AddressLine2
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["CitySortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">City</a>
-            </th>
-            <th>
-                PostalCode
-            </th>
-            <th>
-                State
-            </th>
-            <th>
-                Email
-            </th>
-            @*<th>
-                Vehicle
-            </th>*@
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddressLine1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AddressLine2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PostalCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td >
-            @*<td>
-                <table>
-                    <tr>
-                        <th>
-                            Make
-                        </th>
-                        <th>
-                            Model
-                        </th>
-                    </tr>
-                    @foreach (var vehicle in item.Vehicles)
-                {
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    <input type="submit" value="Search" class="btn btn-primary" /> |
+                    <a asp-action="Index" class="btn btn-primary">Back to Full List</a>
+                </p>
+            </div>
+        </form>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => vehicle.MakeName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => vehicle.ModelName1)
-                    </td>
+                    <th>
+                        FirstName
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">LastName</a>
+                    </th>
+                    <th>
+                        AddressLine1
+                    </th>
+                    <th>
+                        AddressLine2
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["CitySortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">City</a>
+                    </th>
+                    <th>
+                        PostalCode
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    @*<th>
+                            Vehicle
+                        </th>*@
+                    <th></th>
                 </tr>
-                }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
 
-                </table>
-            </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.UserID">Edit</a>
-                <a asp-action="Details" asp-route-id="@item.UserID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.UserID">Delete</a>
-            </td>
-            <td>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddressLine1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddressLine2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PostalCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        @*<td>
+                                <table>
+                                    <tr>
+                                        <th>
+                                            Make
+                                        </th>
+                                        <th>
+                                            Model
+                                        </th>
+                                    </tr>
+                                    @foreach (var vehicle in item.Vehicles)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => vehicle.MakeName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => vehicle.ModelName1)
+                                    </td>
+                                </tr>
+                                }
+
+                                </table>
+                            </td>*@
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.UserID">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.UserID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.UserID">Delete</a>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Please Sign in to Admin access this feature.</p>
+    }
+</div>
+
 
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
@@ -135,3 +144,24 @@
    class="btn btn-info @nextDisabled">
     Next
 </a>
+
+<footer>
+    <div class="row text-center">
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Expenses" asp-action="Index">Expenses</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Inde">MenuPage</a>
+
+        </div>
+    </div>
+</footer>

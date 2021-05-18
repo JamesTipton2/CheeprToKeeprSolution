@@ -34,10 +34,9 @@ namespace CheeprToKeepr.Models
         [Display(Name = "Phone Number")]
         [RegularExpression(@"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$")]
         public string PhoneNumber { get; set; }
-        [DataType("Email")]
-        [RegularExpression(@"^(([^<>()[\]\\.,;:\s@""]+(\.[^<>()[\]\\.,;:\s@""]+)*)|("".+""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$", ErrorMessage = "invalid email")]
-        public string Email { get; set; }
         [EmailAddress]
+        public string Email { get; set; }
+        [DataType("Webiste")]
         public string Website { get; set; }
         [DisplayName("Vendor Type")]
         public int VendorCategoryID { get; set; }

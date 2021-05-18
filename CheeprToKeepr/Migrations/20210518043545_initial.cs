@@ -13,7 +13,7 @@ namespace CheeprToKeepr.Migrations
                 {
                     ExpenseCategoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExpenseType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ExpenseType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -21,16 +21,16 @@ namespace CheeprToKeepr.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ServicesCategory",
+                name: "ServiceCategory",
                 columns: table => new
                 {
-                    ServicesCategoryID = table.Column<int>(type: "int", nullable: false)
+                    ServiceCategoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    ServiceType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServicesCategory", x => x.ServicesCategoryID);
+                    table.PrimaryKey("PK_ServiceCategory", x => x.ServiceCategoryID);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,14 +39,14 @@ namespace CheeprToKeepr.Migrations
                 {
                     UserID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AddressLine1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AddressLine2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,16 +54,16 @@ namespace CheeprToKeepr.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "VendorsCategory",
+                name: "VendorCategory",
                 columns: table => new
                 {
                     VendorCategoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VendorType = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    VendorType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_VendorsCategory", x => x.VendorCategoryID);
+                    table.PrimaryKey("PK_VendorCategory", x => x.VendorCategoryID);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,14 +72,14 @@ namespace CheeprToKeepr.Migrations
                 {
                     VehicleID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
-                    MakeName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ModelName1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MakeName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ModelName1 = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ModelName2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VehicleMileage = table.Column<int>(type: "int", nullable: false),
-                    GasByGallons = table.Column<int>(type: "int", nullable: false),
-                    TireMileage = table.Column<int>(type: "int", nullable: false)
+                    TireMileage = table.Column<int>(type: "int", nullable: false),
+                    MilesPerGallon = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    UserID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,30 +93,29 @@ namespace CheeprToKeepr.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Vendors",
+                name: "Vendor",
                 columns: table => new
                 {
                     VendorID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    State = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VendorsCategoryID = table.Column<int>(type: "int", nullable: false),
-                    VendorCategoryID = table.Column<int>(type: "int", nullable: true)
+                    VendorCategoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vendors", x => x.VendorID);
+                    table.PrimaryKey("PK_Vendor", x => x.VendorID);
                     table.ForeignKey(
-                        name: "FK_Vendors_VendorsCategory_VendorCategoryID",
+                        name: "FK_Vendor_VendorCategory_VendorCategoryID",
                         column: x => x.VendorCategoryID,
-                        principalTable: "VendorsCategory",
+                        principalTable: "VendorCategory",
                         principalColumn: "VendorCategoryID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,12 +124,12 @@ namespace CheeprToKeepr.Migrations
                 {
                     ExpenseID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExpenseCategoryID = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExpenseDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false),
                     VehicleID = table.Column<int>(type: "int", nullable: false),
-                    Cost = table.Column<int>(type: "int", nullable: false)
+                    ExpenseCategoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,26 +149,48 @@ namespace CheeprToKeepr.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Fillup",
+                columns: table => new
+                {
+                    FillupID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Gallons = table.Column<double>(type: "float", nullable: false),
+                    MilesDriven = table.Column<double>(type: "float", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    VehicleID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Fillup", x => x.FillupID);
+                    table.ForeignKey(
+                        name: "FK_Fillup_Vehicle_VehicleID",
+                        column: x => x.VehicleID,
+                        principalTable: "Vehicle",
+                        principalColumn: "VehicleID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Service",
                 columns: table => new
                 {
-                    ServicesID = table.Column<int>(type: "int", nullable: false)
+                    ServiceID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VehicleID = table.Column<int>(type: "int", nullable: false),
-                    ServicesCategoryID = table.Column<int>(type: "int", nullable: false),
-                    ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ServiceDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     VehicleMilesAtService = table.Column<int>(type: "int", nullable: true),
+                    ServiceCategoryID = table.Column<int>(type: "int", nullable: false),
+                    VehicleID = table.Column<int>(type: "int", nullable: false),
                     VendorID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Service", x => x.ServicesID);
+                    table.PrimaryKey("PK_Service", x => x.ServiceID);
                     table.ForeignKey(
-                        name: "FK_Service_ServicesCategory_ServicesCategoryID",
-                        column: x => x.ServicesCategoryID,
-                        principalTable: "ServicesCategory",
-                        principalColumn: "ServicesCategoryID",
+                        name: "FK_Service_ServiceCategory_ServiceCategoryID",
+                        column: x => x.ServiceCategoryID,
+                        principalTable: "ServiceCategory",
+                        principalColumn: "ServiceCategoryID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Service_Vehicle_VehicleID",
@@ -178,9 +199,9 @@ namespace CheeprToKeepr.Migrations
                         principalColumn: "VehicleID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Service_Vendors_VendorID",
+                        name: "FK_Service_Vendor_VendorID",
                         column: x => x.VendorID,
-                        principalTable: "Vendors",
+                        principalTable: "Vendor",
                         principalColumn: "VendorID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -196,9 +217,14 @@ namespace CheeprToKeepr.Migrations
                 column: "VehicleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Service_ServicesCategoryID",
+                name: "IX_Fillup_VehicleID",
+                table: "Fillup",
+                column: "VehicleID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Service_ServiceCategoryID",
                 table: "Service",
-                column: "ServicesCategoryID");
+                column: "ServiceCategoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Service_VehicleID",
@@ -216,8 +242,8 @@ namespace CheeprToKeepr.Migrations
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vendors_VendorCategoryID",
-                table: "Vendors",
+                name: "IX_Vendor_VendorCategoryID",
+                table: "Vendor",
                 column: "VendorCategoryID");
         }
 
@@ -227,25 +253,28 @@ namespace CheeprToKeepr.Migrations
                 name: "Expense");
 
             migrationBuilder.DropTable(
+                name: "Fillup");
+
+            migrationBuilder.DropTable(
                 name: "Service");
 
             migrationBuilder.DropTable(
                 name: "ExpenseCategory");
 
             migrationBuilder.DropTable(
-                name: "ServicesCategory");
+                name: "ServiceCategory");
 
             migrationBuilder.DropTable(
                 name: "Vehicle");
 
             migrationBuilder.DropTable(
-                name: "Vendors");
+                name: "Vendor");
 
             migrationBuilder.DropTable(
                 name: "User");
 
             migrationBuilder.DropTable(
-                name: "VendorsCategory");
+                name: "VendorCategory");
         }
     }
 }

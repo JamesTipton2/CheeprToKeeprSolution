@@ -40,7 +40,7 @@
                         <td width="20%">@expense.Name</td>
                         <td width="20%">@expense.ExpenseDateTime</td>
                         <td width="20%">@expense.Cost</td>
-                        <td width="20%">@expense.ExpenseCategory.ExpenseType"</td>
+                        <td width="20%">@expense.ExpenseCategory.ExpenseType</td>
                         <td width="20%">
                             <div class="w-100 btn-group" role="group">
                                 <a class="btn btn-primary" asp-controller="Expenses" asp-action="Update" asp-route-id="@expense.ExpenseID" mx-1>Update</a>
@@ -60,8 +60,26 @@
 
 </div>
 <footer>
-    <div class="col-6 text-right">
-        <a class="btn btn-success" asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a>
+    <div class="row text-center">
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Category List</a>
 
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Vehicles" asp-action="Index">Vehicles</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Services" asp-action="Index">Services</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Vendor" asp-action="Index">Vendors</a>
+
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="Index">MenuPage</a>
+
+        </div>
     </div>
 </footer>

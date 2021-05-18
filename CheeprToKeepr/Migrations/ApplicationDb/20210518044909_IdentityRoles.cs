@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CheeprToKeepr.Migrations
+namespace CheeprToKeepr.Migrations.ApplicationDb
 {
-    public partial class updateTables : Migration
+    public partial class IdentityRoles : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

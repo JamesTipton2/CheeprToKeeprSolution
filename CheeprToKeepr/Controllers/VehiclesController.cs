@@ -1,4 +1,5 @@
 ﻿using CheeprToKeepr.Data;
+using CheeprToKeepr.Infrastructure;
 using CheeprToKeepr.Models;
 using CheeprToKeepr.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,15 @@ namespace CheeprToKeepr.Controllers
     public class VehiclesController : Controller
     {
         private readonly CheeprToKeeprContext _ctx;
-        public VehiclesController(CheeprToKeeprContext ctx)
+        private readonly ICheeprToKeeprService _service;
+        public VehiclesController(CheeprToKeeprContext ctx, ICheeprToKeeprService service)
         {
+            _service = service;
             _ctx = ctx;
         }
         public IActionResult Index()
         {
+            _service.GetOwnerList();
             IEnumerable<Vehicle> vehicleList = _ctx.Vehicles;
             return View(vehicleList);
         }
