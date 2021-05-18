@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CheeprToKeepr.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CheeprToKeepr
 {
@@ -25,10 +27,15 @@ namespace CheeprToKeepr
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDbContext<CheeprToKeeprContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:CheeprToKeeprContext"]));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddControllersWithViews();
+
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +44,7 @@ namespace CheeprToKeepr
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -49,6 +57,7 @@ namespace CheeprToKeepr
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -56,6 +65,7 @@ namespace CheeprToKeepr
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                //endpoints.MapRazorPages();
             });
         }
     }

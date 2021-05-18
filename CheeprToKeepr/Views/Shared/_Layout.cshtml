@@ -6,13 +6,19 @@
     <title>@ViewData["Title"] - Cheapr To Keepr</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2020.2.513/styles/kendo.default-v2.min.css" />
+    <link href="~/lib/select2/css/select2.css" rel="stylesheet" />
     <style>
         body {
             background-color: #76cb78;
             text-emphasis-color: #0026ff;
         }
     </style>
-    
+
 </head>
 <body>
     <header>
@@ -32,7 +38,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Vehicles" asp-action="Index">My Vehicles</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Expenses" asp-action="Index">My Expenses</a>
                         </li>
@@ -43,8 +49,8 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Vendor" asp-action="Index">Vendor List</a>
                         </li>
                         @*<li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Categories</a>
-                        </li>*@
+                                <a class="nav-link text-white" asp-area="" asp-controller="ExpenseCategory" asp-action="Index">Expense Categories</a>
+                            </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="VendorCategory" asp-action="Index">Vendor Categories</a>
                         </li>
@@ -52,6 +58,7 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="ServiceCategory" asp-action="Index">Service Categories</a>
                         </li>
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -70,6 +77,13 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/lib/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2020.2.513/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="~/js/notify.min.js"></script>
+    <script src="~/js/script-custom-calendar.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

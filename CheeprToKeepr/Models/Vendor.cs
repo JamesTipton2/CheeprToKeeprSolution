@@ -37,8 +37,7 @@ namespace CheeprToKeepr.Models
         [DataType("Email")]
         [RegularExpression(@"^(([^<>()[\]\\.,;:\s@""]+(\.[^<>()[\]\\.,;:\s@""]+)*)|("".+""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$", ErrorMessage = "invalid email")]
         public string Email { get; set; }
-        [RegularExpression(@"^(www.|[a-zA-Z].)[a-zA-Z0-9\-\.]+\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk)(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*$", 
-            ErrorMessage = "Please provide a valid webiste URL")]
+        [EmailAddress]
         public string Website { get; set; }
         [DisplayName("Vendor Type")]
         public int VendorCategoryID { get; set; }
